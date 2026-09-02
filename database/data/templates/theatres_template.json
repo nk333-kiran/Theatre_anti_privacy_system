@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Regal LA Live",
+    "code": "RLL-01",
+    "location": "Downtown Los Angeles, CA",
+    "address": "1000 Olympic Blvd, Los Angeles, CA 90015",
+    "contactEmail": "manager@regallive.com",
+    "contactPhone": "+1-213-763-6070",
+    "permanentQrCode": "QR-THEATRE-RLL01-PERM"
+  },
+  {
+    "name": "AMC Empire 25",
+    "code": "AMC-25",
+    "location": "Times Square, New York, NY",
+    "address": "234 W 42nd St, New York, NY 10036",
+    "contactEmail": "ops@amcempire.com",
+    "contactPhone": "+1-212-398-3939",
+    "permanentQrCode": "QR-THEATRE-AMC25-PERM"
+  }
+]

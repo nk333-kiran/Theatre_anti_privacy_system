@@ -1,0 +1,47 @@
+# ==============================================================================
+# Theatre Anti-Piracy Web Frontend - Multi-Stage Production Dockerfile
+# ==============================================================================
+
+# Stage 1: Dependencies & Build
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY web/package*.json ./web/
+
+RUN npm ci
+
+COPY web ./web
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+
+RUN npm run build:web
+
+# Stage 2: Minimal Production Runtime
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001 -G nodejs
+
+# Copy standalone output or public/static assets
+COPY --from=builder --chown=nextjs:nodejs /app/web/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/web/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/web/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/web/package.json ./package.json
+
+USER nextjs
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

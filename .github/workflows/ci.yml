@@ -1,0 +1,92 @@
+name: CI/CD Production Validation Pipeline
+
+on:
+  push:
+    branches: [ main, master, release/* ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-and-test:
+    name: Build, Security Hardening & Integration Suite
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: testpassword123
+          POSTGRES_DB: theatre_antipiracy_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Monorepo Dependencies
+        run: npm ci
+
+      - name: Prisma Schema Validation & Client Generation
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+        run: |
+          npx prisma validate --schema=database/prisma/schema.prisma
+          npm run db:generate
+
+      - name: Apply Database Migrations
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+        run: |
+          npx prisma db push --schema=database/prisma/schema.prisma --accept-data-loss
+
+      - name: Build Database & API Packages
+        run: |
+          npm run build --workspace=@antipiracy/database
+          npm run build --workspace=@antipiracy/api
+
+      - name: Run Cryptographic Security Tests
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+          JWT_SECRET: "ci-pipeline-secure-test-jwt-secret-key-32-chars-minimum"
+          NODE_ENV: test
+        run: npm run test:security --workspace=@antipiracy/api
+
+      - name: Run Production Reliability & Operations Tests
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+          JWT_SECRET: "ci-pipeline-secure-test-jwt-secret-key-32-chars-minimum"
+          NODE_ENV: test
+        run: npm run test:reliability --workspace=@antipiracy/api
+
+      - name: Run End-to-End Theatrical Pipeline Tests
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+          JWT_SECRET: "ci-pipeline-secure-test-jwt-secret-key-32-chars-minimum"
+          NODE_ENV: test
+        run: npm run test:e2e --workspace=@antipiracy/api
+
+      - name: Build Web Application
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:4000/api
+        run: npm run build --workspace=@antipiracy/web
+
+      - name: Run Production Security Config Audit
+        env:
+          NODE_ENV: production
+          JWT_SECRET: "ci-pipeline-secure-test-jwt-secret-key-32-chars-minimum"
+          DATABASE_URL: postgresql://postgres:testpassword123@localhost:5432/theatre_antipiracy_db?schema=public
+          CORS_ORIGIN: "https://theatre-security.com"
+        run: npm run check:security-config --workspace=@antipiracy/api

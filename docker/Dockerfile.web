@@ -1,0 +1,50 @@
+# ==========================================
+# Multi-Stage Dockerfile for Next.js Web App
+# ==========================================
+
+# Stage 1: Build & Dependencies
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY web/package*.json ./web/
+
+RUN npm install
+
+COPY web ./web
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+
+RUN npm run build --workspace=@antipiracy/web
+
+# Stage 2: Production Runner
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+RUN apk add --no-cache curl
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Create non-root system user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+COPY package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/web/public ./web/public
+COPY --from=builder /app/web/.next ./web/.next
+COPY --from=builder /app/web/package*.json ./web/
+
+USER nextjs
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3000 || exit 1
+
+CMD ["npm", "run", "start", "--workspace=@antipiracy/web"]

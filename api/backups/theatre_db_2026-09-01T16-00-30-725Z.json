@@ -1,0 +1,172 @@
+{
+  "backupId": "bkp_1788278430725_1a1a3a1c",
+  "timestamp": "2026-09-01T16:00:30.725Z",
+  "environment": "development",
+  "version": "1.0.0",
+  "tables": {
+    "theatres": [
+      {
+        "id": "a77487df-8c55-4c40-8731-f71e418acbae",
+        "name": "Grand Palace Laser IMAX Cinema",
+        "code": "THTR-VAL-DEMO",
+        "permanentQrCode": null,
+        "location": "San Francisco, CA",
+        "address": "100 Digital Rights Plaza, SF, CA 94103",
+        "contactEmail": "soc-admin@grandpalace.cinema",
+        "contactPhone": null,
+        "createdAt": "2026-09-01T15:58:52.624Z",
+        "updatedAt": "2026-09-01T15:58:52.624Z"
+      }
+    ],
+    "screens": [
+      {
+        "id": "e494ad07-1b9b-475f-a649-c5875944031c",
+        "theatreId": "a77487df-8c55-4c40-8731-f71e418acbae",
+        "screenNumber": 1,
+        "name": "Auditorium 1 (Laser IMAX)",
+        "capacity": 350,
+        "createdAt": "2026-09-01T15:58:52.647Z",
+        "updatedAt": "2026-09-01T15:58:52.647Z"
+      }
+    ],
+    "movies": [
+      {
+        "id": "6f2dd033-dad5-4c93-87c3-ac8583bcec94",
+        "title": "Interstellar Sentinel: Cyber Odyssey",
+        "description": "High-profile theatrical release featuring dynamic forensic watermarking and real-time piracy protection.",
+        "synopsis": null,
+        "durationMinutes": 148,
+        "language": "English (Dolby Atmos)",
+        "rating": "PG-13",
+        "posterUrl": null,
+        "releaseDate": null,
+        "contentStatus": "PUBLISHED",
+        "productionCompanyId": "1b9862b0-b208-46d1-bac1-63b967fa1948",
+        "createdAt": "2026-09-01T15:58:52.720Z",
+        "updatedAt": "2026-09-01T15:58:52.720Z"
+      }
+    ],
+    "movieReleases": [],
+    "shows": [
+      {
+        "id": "f9d283e3-25ed-4907-94f3-9979b85858de",
+        "theatreId": "a77487df-8c55-4c40-8731-f71e418acbae",
+        "screenId": "e494ad07-1b9b-475f-a649-c5875944031c",
+        "movieId": "6f2dd033-dad5-4c93-87c3-ac8583bcec94",
+        "startTime": "2026-09-01T15:33:52.611Z",
+        "endTime": "2026-09-01T18:03:52.611Z",
+        "status": "ACTIVE",
+        "createdAt": "2026-09-01T15:58:52.733Z",
+        "updatedAt": "2026-09-01T15:58:52.733Z"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "d5005a03-97cb-4e2c-a004-e01bcc62be78",
+        "ticketNumber": "TCK-VAL-DEMO-01",
+        "showId": "f9d283e3-25ed-4907-94f3-9979b85858de",
+        "seatNumber": "K-14",
+        "price": "24.5",
+        "status": "ISSUED",
+        "createdAt": "2026-09-01T15:58:53.045Z",
+        "updatedAt": "2026-09-01T15:58:53.045Z"
+      }
+    ],
+    "activations": [
+      {
+        "id": "3af3e292-00dd-4824-8863-95024aa1c864",
+        "ticketId": "d5005a03-97cb-4e2c-a004-e01bcc62be78",
+        "activationCode": "ACT-VAL-DEMO-01",
+        "status": "PENDING",
+        "activatedAt": null,
+        "expiresAt": "2026-09-01T18:28:52.611Z",
+        "deviceFingerprint": null,
+        "ipAddress": null,
+        "createdAt": "2026-09-01T15:58:53.151Z",
+        "updatedAt": "2026-09-01T15:58:53.151Z"
+      }
+    ],
+    "verifications": [],
+    "videoAssets": [],
+    "drmAssets": [],
+    "playbackSessions": [],
+    "drmLicenses": [],
+    "securityAudits": [
+      {
+        "id": "38f35c2d-26f2-4db6-9d7b-dd674650dc21",
+        "eventType": "SUSPICIOUS_ACTIVITY",
+        "severity": "INFO",
+        "userId": "admin-default-id",
+        "actorEmail": "admin@theatre.com",
+        "actorRole": "ADMIN",
+        "theatreId": null,
+        "showId": null,
+        "activationId": null,
+        "ticketId": null,
+        "ipAddress": null,
+        "userAgent": null,
+        "deviceFingerprint": null,
+        "endpoint": null,
+        "actionSummary": "Admin admin@theatre.com DISABLED Maintenance Mode",
+        "metadata": null,
+        "isThreat": false,
+        "threatDetails": null,
+        "createdAt": "2026-09-01T16:00:27.443Z"
+      },
+      {
+        "id": "5b2160ce-27d0-4d9e-b0eb-2b8b21d97d2d",
+        "eventType": "SUSPICIOUS_ACTIVITY",
+        "severity": "HIGH",
+        "userId": "admin-default-id",
+        "actorEmail": "admin@theatre.com",
+        "actorRole": "ADMIN",
+        "theatreId": null,
+        "showId": null,
+        "activationId": null,
+        "ticketId": null,
+        "ipAddress": null,
+        "userAgent": null,
+        "deviceFingerprint": null,
+        "endpoint": null,
+        "actionSummary": "Admin admin@theatre.com ENABLED Maintenance Mode: Scheduled maintenance in progress",
+        "metadata": null,
+        "isThreat": false,
+        "threatDetails": null,
+        "createdAt": "2026-09-01T16:00:19.690Z"
+      },
+      {
+        "id": "7af79387-3490-41a8-971f-0c4025c6b084",
+        "eventType": "LOGIN_SUCCESS",
+        "severity": "INFO",
+        "userId": "admin-default-id",
+        "actorEmail": "admin@theatre.com",
+        "actorRole": "ADMIN",
+        "theatreId": null,
+        "showId": null,
+        "activationId": null,
+        "ticketId": null,
+        "ipAddress": "::1",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0",
+        "deviceFingerprint": null,
+        "endpoint": null,
+        "actionSummary": "Admin account logged in successfully from ::1",
+        "metadata": null,
+        "isThreat": false,
+        "threatDetails": null,
+        "createdAt": "2026-09-01T15:57:41.091Z"
+      }
+    ],
+    "productionCompanies": [
+      {
+        "id": "1b9862b0-b208-46d1-bac1-63b967fa1948",
+        "name": "Universal Vanguard Pictures",
+        "code": "STU-VAL-DEMO",
+        "contactEmail": "security@universal-vanguard.com",
+        "contactPhone": "+1-800-555-4920",
+        "status": "ACTIVE",
+        "createdAt": "2026-09-01T15:58:52.617Z",
+        "updatedAt": "2026-09-01T15:58:52.617Z"
+      }
+    ]
+  }
+}

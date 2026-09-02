@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Universal Pictures",
+    "code": "UNI",
+    "contactEmail": "anti-piracy@universalpictures.com",
+    "contactPhone": "+1-818-777-1000",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "Paramount Global",
+    "code": "PAR",
+    "contactEmail": "security@paramount.com",
+    "contactPhone": "+1-323-956-5000",
+    "status": "ACTIVE"
+  }
+]

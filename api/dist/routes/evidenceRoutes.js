@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const evidenceController_1 = require("../controllers/evidenceController");
+const router = (0, express_1.Router)();
+router.use(auth_1.authenticateJwt);
+router.post("/", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), evidenceController_1.createEvidence);
+router.get("/", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), evidenceController_1.listEvidence);
+router.get("/stats", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), evidenceController_1.getEvidenceStats);
+router.get("/:id", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), evidenceController_1.getEvidenceById);
+router.get("/:id/chain", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), evidenceController_1.getEvidenceChain);
+router.post("/:id/verify", (0, auth_1.requireRole)(["ADMIN", "THEATRE_STAFF"]), evidenceController_1.verifyEvidence);
+router.post("/:id/legal-hold", (0, auth_1.requireRole)(["ADMIN"]), evidenceController_1.toggleLegalHold);
+router.post("/:id/export", (0, auth_1.requireRole)(["ADMIN", "PRODUCTION_COMPANY"]), evidenceController_1.exportEvidence);
+exports.default = router;

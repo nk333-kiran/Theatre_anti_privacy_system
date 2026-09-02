@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Theatre Anti-Piracy Native</string>
+    <string name="title_auth">Checkpoint Sign In</string>
+    <string name="title_scanner">Ticket QR Scanner</string>
+    <string name="title_session">Protected Screening</string>
+    <string name="title_attribution">Forensic Attribution</string>
+    <string name="title_security">SOC Telemetry</string>
+    <string name="title_diagnostics">Device Diagnostics</string>
+</resources>

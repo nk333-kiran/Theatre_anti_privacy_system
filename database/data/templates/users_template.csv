@@ -1,0 +1,4 @@
+email,name,role,theatreCode,productionCompanyCode,password
+"theatre.admin@regallive.com","Regal Theatre Manager","THEATRE_ADMIN","RLL-01",,"SecurePass2026!"
+"gate.staff@regallive.com","Gate Security Scanner","THEATRE_STAFF","RLL-01",,"SecurePass2026!"
+"studio.rep@universalpictures.com","Universal Anti-Piracy Auditor","PRODUCTION_COMPANY",,"UNI","SecurePass2026!"

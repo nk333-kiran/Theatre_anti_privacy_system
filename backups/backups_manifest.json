@@ -1,0 +1,108 @@
+[
+  {
+    "backupId": "BKP-CORRUPT-35269",
+    "timestamp": "2026-08-31T16:17:15.367Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:17:15.367Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:17:15.370Z",
+    "correlationId": "CORR-REC-VAL-1788193035370",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-03654",
+    "timestamp": "2026-08-31T16:16:43.757Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:16:43.757Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:17:15.362Z",
+    "correlationId": "CORR-VERIFY-1788193035361",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-79752",
+    "timestamp": "2026-08-31T16:16:19.849Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:16:19.849Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:16:43.753Z",
+    "correlationId": "CORR-VERIFY-1788193003752",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-56423",
+    "timestamp": "2026-08-31T16:15:56.525Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:15:56.525Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:16:19.844Z",
+    "correlationId": "CORR-VERIFY-1788192979844",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-34616",
+    "timestamp": "2026-08-31T16:15:34.717Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:15:34.717Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:15:56.520Z",
+    "correlationId": "CORR-VERIFY-1788192956520",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-09034",
+    "timestamp": "2026-08-31T16:15:09.119Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:15:09.119Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:15:34.713Z",
+    "correlationId": "CORR-VERIFY-1788192934712",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-CORRUPT-45511",
+    "timestamp": "2026-08-31T16:14:05.721Z",
+    "backupType": "MANUAL",
+    "createdAt": "2026-08-31T16:14:05.721Z",
+    "size": 94812,
+    "checksum": "CORRUPTED_9999999999999999999999999999999999999999999999999999999999999999",
+    "verificationStatus": "CORRUPTED",
+    "verifiedAt": "2026-08-31T16:15:09.114Z",
+    "correlationId": "CORR-VERIFY-1788192909114",
+    "recordCount": 1420
+  },
+  {
+    "backupId": "BKP-PROD-INIT-001",
+    "timestamp": "2026-08-31T16:14:05.711Z",
+    "backupType": "SCHEDULED",
+    "createdAt": "2026-08-31T16:14:05.711Z",
+    "size": 15428000,
+    "checksum": "8e7c10b4f8a3429188e0b6d9f7833a69c0d12e8b2b719468e21973415cf98b1a",
+    "verificationStatus": "VERIFIED",
+    "verifiedAt": "2026-08-31T16:17:15.419Z",
+    "correlationId": "CORR-REC-VAL-1788193035419",
+    "tablesIncluded": [
+      "User",
+      "Theatre",
+      "Movie",
+      "Show",
+      "Ticket",
+      "EvidenceRecord",
+      "EvidenceArtifact",
+      "EvidenceHash"
+    ],
+    "recordCount": 1420
+  }
+]

@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const enforcementController_1 = require("../controllers/enforcementController");
+const router = (0, express_1.Router)();
+// Apply JWT authentication across all enforcement endpoints
+router.use(auth_1.authenticateJwt);
+router.post("/", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.createEnforcementAction);
+router.get("/", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.listEnforcementActions);
+router.get("/:id", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.getEnforcementActionById);
+router.get("/:id/package", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.generateEnforcementPackage);
+router.post("/:id/review", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.submitForReview);
+router.post("/:id/approve", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "PRODUCTION_COMPANY"]), enforcementController_1.approveEnforcementAction);
+router.post("/:id/reject", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "PRODUCTION_COMPANY"]), enforcementController_1.rejectEnforcementAction);
+router.post("/:id/submit", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "PRODUCTION_COMPANY"]), enforcementController_1.submitEnforcementAction);
+router.post("/:id/complete", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "PRODUCTION_COMPANY"]), enforcementController_1.completeEnforcementAction);
+router.post("/:id/cancel", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.cancelEnforcementAction);
+router.get("/:id/verify", (0, auth_1.requireRole)(["ADMIN", "THEATRE_ADMIN", "THEATRE_STAFF", "PRODUCTION_COMPANY"]), enforcementController_1.verifyPackageIntegrity);
+exports.default = router;

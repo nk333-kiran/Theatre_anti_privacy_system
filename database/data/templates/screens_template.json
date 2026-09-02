@@ -1,0 +1,14 @@
+[
+  {
+    "theatreCode": "RLL-01",
+    "screenNumber": 1,
+    "name": "IMAX Laser Main Auditorium",
+    "capacity": 420
+  },
+  {
+    "theatreCode": "RLL-01",
+    "screenNumber": 2,
+    "name": "Dolby Atmos Premium Screen",
+    "capacity": 280
+  }
+]

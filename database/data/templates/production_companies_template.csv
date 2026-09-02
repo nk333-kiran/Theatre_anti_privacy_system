@@ -1,0 +1,4 @@
+name,code,contactEmail,contactPhone,status
+"Universal Pictures","UNI","anti-piracy@universalpictures.com","+1-818-777-1000","ACTIVE"
+"Paramount Global","PAR","security@paramount.com","+1-323-956-5000","ACTIVE"
+"Sony Pictures Entertainment","SPE","content-protect@sonypictures.com","+1-310-244-4000","ACTIVE"

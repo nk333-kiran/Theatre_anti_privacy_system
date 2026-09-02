@@ -1,0 +1,63 @@
+# ==========================================
+# Production Multi-Stage Dockerfile for API Service
+# ==========================================
+
+# Stage 1: Build & Dependencies
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Install build tools for native modules if needed
+RUN apk add --no-cache python3 make g++
+
+# Copy package manifests across monorepo
+COPY package*.json ./
+COPY database/package*.json ./database/
+COPY api/package*.json ./api/
+
+# Install dependencies
+RUN npm install
+
+# Copy database & API source
+COPY database ./database
+COPY api ./api
+
+# Build Database client and API TypeScript
+RUN npm run build --workspace=@antipiracy/database
+RUN npm run build --workspace=@antipiracy/api
+
+# Stage 2: Production Minimal Runtime
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Install FFmpeg & curl for container health check probes
+RUN apk add --no-cache ffmpeg curl
+
+ENV NODE_ENV=production
+ENV PORT=4000
+
+# Create non-root system user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nodejs
+
+# Copy root manifests and built artifacts
+COPY package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/database ./database
+COPY --from=builder /app/api/dist ./api/dist
+COPY --from=builder /app/api/package*.json ./api/
+
+# Setup storage directory with non-root ownership
+RUN mkdir -p /app/private_storage/raw /app/private_storage/processed && \
+    chown -R nodejs:nodejs /app
+
+USER nodejs
+
+EXPOSE 4000
+
+# Health check using the readiness probe
+HEALTHCHECK --interval=20s --timeout=5s --start-period=15s --retries=3 \
+  CMD curl -f http://localhost:4000/health/live || exit 1
+
+CMD ["node", "api/dist/index.js"]
