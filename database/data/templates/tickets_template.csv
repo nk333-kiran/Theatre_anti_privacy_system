@@ -1,5 +1,0 @@
-showId,seatNumber,price,ticketNumber,createActivation
-"<SHOW_UUID_HERE>","A1",15.00,"TCK-SAMPLE-A1",true
-"<SHOW_UUID_HERE>","A2",15.00,"TCK-SAMPLE-A2",true
-"<SHOW_UUID_HERE>","A3",15.00,"TCK-SAMPLE-A3",true
-"<SHOW_UUID_HERE>","B1",18.50,"TCK-SAMPLE-B1",true
